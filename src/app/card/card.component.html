@@ -1,0 +1,23 @@
+<div class="card">
+  <h2 class="title is-2 has-text-centered">Typing Challenge</h2>
+  <hr>
+  <div class="">
+    <span
+      [class]="compare(letter, typedSentence[i])"
+      *ngFor="let letter of randomSentence.split(''); let i = index"
+    >{{ letter }}</span>
+  </div>
+  <hr>
+  <div class="field">
+    <label class="label">Match the random text</label>
+    <div class="control">
+      <input (input)="onInputChange($event.target.value)" [value]="typedSentence" class="input" type="text"
+        placeholder="...stat typing">
+    </div>
+  </div>
+  <button (click)="generateSentence()" class="button is-primary is-fullwidth">Start Game!</button>
+  <hr>
+  <div class="has-text-centered">
+    <h2 class="title is-2-has-text-centered" *ngIf="youWon()">You Won!</h2>
+  </div>
+</div>
