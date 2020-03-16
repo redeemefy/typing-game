@@ -7,12 +7,12 @@
       *ngFor="let letter of randomSentence.split(''); let i = index"
     >{{ letter }}</span>
   </div>
-  <hr>
+  <hr *ngIf="randomSentence">
   <div class="field">
     <label class="label">Match the random text</label>
     <div class="control">
       <input (input)="onInputChange($event.target.value)" [value]="typedSentence" class="input" type="text"
-        placeholder="...stat typing">
+        [placeholder]="randomSentence ? '...start typing' : ''">
     </div>
   </div>
   <button (click)="generateSentence()" class="button is-primary is-fullwidth">Start Game!</button>

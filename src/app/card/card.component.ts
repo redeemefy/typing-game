@@ -19,6 +19,7 @@ export class CardComponent implements OnInit {
   generateSentence() {
     this.typedSentence = ''
     this.randomSentence = lorem.sentence()
+    document.querySelector('input').focus()
   }
 
   onInputChange(value: string) {
