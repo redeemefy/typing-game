@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { lorem } from 'faker'
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-card',
@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
 
   generateSentence() {
     this.typedSentence = ''
-    this.randomSentence = lorem.sentence()
+    this.randomSentence = faker.lorem.sentence()
     document.querySelector('input').focus()
   }
 
