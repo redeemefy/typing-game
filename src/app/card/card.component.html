@@ -11,8 +11,8 @@
   <div class="field">
     <label class="label">Match the random text</label>
     <div class="control">
-      <input (input)="onInputChange($event.target.value)" [value]="typedSentence" class="input" type="text"
-        [placeholder]="randomSentence ? '...start typing' : ''">
+      <input #myInput (input)="onInputChange($event.target.value)" [disabled]="isDisabled()" [value]="typedSentence" class="input" type="text"
+        [placeholder]="randomSentence ? '...start typing' : ''" >
     </div>
   </div>
   <button (click)="generateSentence()" class="button is-primary is-fullwidth">Start Game!</button>
