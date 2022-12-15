@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 @Component({
@@ -8,34 +8,46 @@ import { faker } from '@faker-js/faker';
 })
 export class CardComponent implements OnInit {
 
+  @ViewChild('myInput') myInput: ElementRef
+
   randomSentence: string = ''
   typedSentence: string = ''
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  focusInputElement() {
+    setTimeout(() => {
+      this.myInput.nativeElement.focus()
+    }, 100)
   }
 
   generateSentence() {
     this.typedSentence = ''
     this.randomSentence = faker.lorem.sentence()
-    document.querySelector('input').focus()
+    this.focusInputElement()
   }
-
+  
   onInputChange(value: string) {
     this.typedSentence = value
-    console.log(this.typedSentence)
   }
-
+  
   compare(randomChar: string, enteredChar: string) {
     if(!enteredChar) {
       return 'pending'
     }
-
+    
     return randomChar === enteredChar ? 'correct' : 'incorrect'
+  }
+  
+  isDisabled() {
+    return (this.typedSentence.length === this.randomSentence.length) && (this.typedSentence === this.randomSentence)
   }
 
   youWon() {
+    // console.log('typedSentence.length: ', this.typedSentence.length)
+    // console.log('random.length: ', this.randomSentence.length)
     return this.typedSentence && this.typedSentence === this.randomSentence
   }
 }
